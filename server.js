@@ -26,3 +26,4 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 app.use('/api/webhooks', require('./src/routes/webhook.routes'));
+app.use(express.static('public'));
