@@ -1,4 +1,4 @@
-const Lead = require('../models/Lead');
+const Lead = require('../models/lead.model');
 
 // 1. Get all leads
 exports.getLeads = async (req, res) => {
