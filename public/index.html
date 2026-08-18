@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prop Flow CRM - Lead Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Real Estate CRM - Lead Dashboard</h2>
+        <p>Aapke saare Meta aur Manual leads yahan dikhenge:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Property Type</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="leadsTable">
+                <tr><td colspan="5" style="text-align: center;">Loading leads...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
