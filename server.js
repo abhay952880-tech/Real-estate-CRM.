@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(cors());
 
 // Static files support - Yeh render par 'public' folder ke path ko 100% sahi jagah dhoondega
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // API Routes
 app.use('/api/webhooks', require('./src/routes/webhook.routes'));
