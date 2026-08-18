@@ -13,8 +13,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 
 // API Routes
-app.use('/api/webhooks', require('./routes/webhook.routes'));
-app.use('/api/leads', require('./routes/lead.routes'));
+app.use('/api/webhooks', require('./routes/webhook.routes')); // Agar server.js src ke andar hai
 
 // Frontend fallback route
 app.get('*', (req, res) => {
