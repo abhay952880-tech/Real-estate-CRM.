@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Estatia CRM — Login</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="brand-badge">E</div>
+      <div>
+        <p class="auth-title">Estatia CRM</p>
+        <p class="auth-subtitle" style="margin:0;">Real Estate Lead &amp; Team Automation</p>
+      </div>
+    </div>
+
+    <div id="loginView">
+      <div class="auth-subtitle">Sign in to your dashboard</div>
+
+      <div class="role-toggle" id="roleToggle">
+        <button type="button" class="active" data-role="broker">Broker / Admin</button>
+        <button type="button" data-role="telecaller">Telecaller</button>
+      </div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="you@company.com" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-3d-gold btn-block" id="loginBtn">Log In</button>
+      </form>
+
+      <div class="divider"></div>
+      <p style="text-align:center; font-size:13px; color:var(--ink-soft);">
+        First time here? <button class="link-btn" id="showSignup">Create a broker account</button>
+      </p>
+      <p style="text-align:center; font-size:11.5px; color:var(--ink-soft); margin-top:4px;">
+        Telecaller accounts are created by your admin — ask your broker for your login.
+      </p>
+    </div>
+
+    <div id="signupView" style="display:none;">
+      <div class="auth-subtitle">Set up your company workspace</div>
+      <form id="signupForm">
+        <div class="field">
+          <label>Company Name</label>
+          <input type="text" id="suCompany" placeholder="O2 Realty Developers" required />
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input type="tel" id="suPhone" placeholder="98765 43210" required />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="suEmail" placeholder="you@company.com" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="suPassword" placeholder="Create a password" required minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-3d-green btn-block" id="signupBtn">Create Account &amp; Continue</button>
+      </form>
+      <div class="divider"></div>
+      <p style="text-align:center; font-size:13px;">
+        <button class="link-btn" id="showLogin">&larr; Back to login</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/auth.js"></script>
+</body>
+</html>
