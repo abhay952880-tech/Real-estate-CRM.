@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Estatia CRM — Admin</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="app-topbar">
+    <div class="brand">
+      <div class="brand-badge">E</div>
+      <span id="companyNameLabel">Estatia CRM</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="pill" id="planPill">Admin</span>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="app-main">
+
+    <!-- ============ OVERVIEW / LEADERBOARD ============ -->
+    <section id="view-overview">
+      <div class="section-heading">Live Overview</div>
+      <div class="stat-grid" id="summaryStats"></div>
+
+      <div class="section-heading">Team Leaderboard</div>
+      <div id="leaderboardList"></div>
+    </section>
+
+    <!-- ============ TEAM MANAGEMENT ============ -->
+    <section id="view-team" style="display:none;">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-heading" style="margin:0;">Your Team</div>
+        <button class="btn btn-3d-gold btn-sm" id="openAddCaller">+ Add Telecaller</button>
+      </div>
+      <div id="teamList"></div>
+    </section>
+
+    <!-- ============ ALL LEADS ============ -->
+    <section id="view-leads" style="display:none;">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-heading" style="margin:0;">All Leads</div>
+        <select id="leadStatusFilter" style="padding:8px 10px; border-radius:8px; border:1.5px solid var(--cream-300); font-family:inherit; font-size:12.5px;">
+          <option value="">All statuses</option>
+          <option value="New">New</option>
+          <option value="Unclaimed">Unclaimed</option>
+          <option value="Connected">Connected</option>
+          <option value="Failed">Failed</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Phone</th><th>Location</th><th>Budget</th><th>Source</th><th>Status</th><th>Assigned To</th><th>Hot</th></tr>
+          </thead>
+          <tbody id="leadsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ CONFIGURATION ============ -->
+    <section id="view-config" style="display:none;">
+      <div class="section-heading" style="margin-top:0;">Company Setup</div>
+      <div class="card">
+        <div class="field">
+          <label>Company Name</label>
+          <input type="text" id="cfgCompanyName" />
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Phone</label>
+          <input type="tel" id="cfgPhone" />
+        </div>
+      </div>
+
+      <div class="section-heading">Target Locations</div>
+      <div class="card">
+        <div class="chip-input-wrap" id="locationsChips">
+          <input type="text" id="locationInput" placeholder="Type a location and press Enter…" />
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;">e.g. Noida, Delhi, Gurgaon — used for smart lead routing.</p>
+      </div>
+
+      <div class="section-heading">Budget Brackets</div>
+      <div class="card">
+        <div class="chip-input-wrap" id="budgetsChips">
+          <input type="text" id="budgetInput" placeholder="Type a bracket and press Enter…" />
+        </div>
+        <p style="font-size:11.5px;color:var(--ink-soft);margin-top:8px;">e.g. Below 50L, 50L–1Cr, 1Cr+</p>
+      </div>
+
+      <div class="section-heading">Call Recording</div>
+      <div class="card">
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <div class="toggle-title">Enable Cloud Call Recording</div>
+            <div class="toggle-desc">Show a play button on the leaderboard for each recorded call.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="recordingToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-heading">Incoming Lead Webhook</div>
+      <div class="card">
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;">
+          Paste this URL into Meta Lead Ads, a WhatsApp chatbot, or a Make.com scenario to automatically push new leads into this CRM.
+        </p>
+        <div class="webhook-box" id="webhookUrlBox">Loading…</div>
+        <button class="btn btn-outline btn-sm" id="copyWebhookBtn" style="margin-top:10px;">Copy URL</button>
+      </div>
+
+      <button class="btn btn-3d-green btn-block" id="saveConfigBtn" style="margin-top:20px;">Save Configuration</button>
+    </section>
+
+  </div>
+
+  <div class="tab-nav">
+    <button data-view="overview" class="active"><span class="tab-icon">📊</span>Overview</button>
+    <button data-view="team"><span class="tab-icon">👥</span>Team</button>
+    <button data-view="leads"><span class="tab-icon">📋</span>Leads</button>
+    <button data-view="config"><span class="tab-icon">⚙️</span>Setup</button>
+  </div>
+</div>
+
+<!-- Add Telecaller Modal -->
+<div class="modal-backdrop" id="addCallerModal" style="display:none;">
+  <div class="modal">
+    <p class="modal-title">Add Telecaller</p>
+    <p class="modal-subtitle">Only admins can add new telecaller accounts.</p>
+    <form id="addCallerForm">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="callerName" required />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="callerEmail" required />
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input type="tel" id="callerPhone" required />
+      </div>
+      <div class="field">
+        <label>Location Specialization</label>
+        <input type="text" id="callerLocation" placeholder="e.g. Noida" />
+      </div>
+      <div style="display:flex; gap:10px; margin-top:6px;">
+        <button type="button" class="btn btn-outline btn-block" id="closeAddCaller">Cancel</button>
+        <button type="submit" class="btn btn-3d-gold btn-block" id="submitAddCaller">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<scrip
