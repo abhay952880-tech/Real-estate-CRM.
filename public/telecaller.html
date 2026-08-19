@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Estatia CRM — My Leads</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="app-topbar">
+    <div class="brand">
+      <div class="brand-badge">E</div>
+      <span id="callerNameLabel">My Leads</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="pill" id="statPill">0 assigned</span>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="app-main">
+    <section id="view-assigned">
+      <div class="section-heading" style="margin-top:0;">My Assigned Leads</div>
+      <div id="assignedList"></div>
+    </section>
+
+    <section id="view-marketplace" style="display:none;">
+      <div class="section-heading" style="margin-top:0;">Marketplace — Claim a Lead</div>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin:-6px 0 14px;">These leads don't match anyone's location specialization. First to claim, wins!</p>
+      <div id="marketplaceList"></div>
+    </section>
+  </div>
+
+  <div class="tab-nav">
+    <button data-view="assigned" class="active"><span class="tab-icon">📋</span>My Leads</button>
+    <button data-view="marketplace"><span class="tab-icon">🎯</span>Marketplace</button>
+  </div>
+</div>
+
+<!-- Disposition Modal -->
+<div class="modal-backdrop" id="dispositionModal" style="display:none;">
+  <div class="modal">
+    <p class="modal-title">How did the call go?</p>
+    <p class="modal-subtitle" id="dispositionLeadName">Update this lead's status</p>
+    <div class="disposition-grid">
+      <button class="btn btn-3d-green btn-block" data-outcome="Connected">🟢 Connected</button>
+      <button class="btn btn-3d-red btn-block" data-outcome="Failed">🔴 Failed / Wrong Number</button>
+      <button class="btn btn-3d-gold btn-block" data-outcome="TopNotch">⭐ Top-Notch (Hot Lead)</button>
+      <button class="btn btn-outline btn-block" id="cancelDisposition">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/telecaller.js"></script>
+</body>
+</html>
